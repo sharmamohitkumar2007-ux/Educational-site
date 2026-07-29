@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medha App</title>
+    <style>
+        /* Basic Settings */
+        body {
+            padding-bottom: 80px; 
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            text-align: center;
+        }
+
+        /* Top Header */
+        .header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: left;
+            margin: 20px 0 10px 5%;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Grid Layout for Buttons */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Ek line me 2 boxes */
+            gap: 15px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Card/Button Style */
+        .card {
+            background-color: white;
+            padding: 20px 10px;
+            border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eef2f1;
+        }
+
+        .card:active {
+            transform: scale(0.95); /* Click karne par dabne ka effect */
+        }
+
+        /* Card Icons */
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        /* Unique Border Colors for Style */
+        .school-card { border-left: 5px solid #28A745; }
+        .govt-card { border-left: 5px solid #FF9800; }
+        .util-card { border-left: 5px solid #9C27B0; }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #e0e0e0;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #757575;
+            font-size: 12px;
+            width: 25%;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        .nav-item.active {
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    
+       <!-- Header -->
+    <div class="header">
+        📖 Medha Portal
+    </div>
+
+    <!-- Section 1: School -->
+    <div class="section-title">School Education</div>
+    <div class="grid-container">
+        <a href="cbse.html" class="card school-card">
+            <span class="card-icon">🏫</span>
+            <span>CBSE 1-12</span>
+        </a>
+        <a href="rbse.html" class="card school-card">
+            <span class="card-icon">🦁</span>
+            <span>RBSE 1-12</span>
+        </a>
+        <a href="otherboards.html" class="card school-card">
+           <span class="card-icon">🎲</span>
+           <span>other state 1-12</span>
+        </a>
+    </div>
+
+    <!-- Section 2: Govt Jobs -->
+    <div class="section-title">Govt Job Exams</div>
+    <div class="grid-container">
+        <a href="ssc.html" class="card govt-card">
+            <span class="card-icon">💼</span>
+            <span>SSC Exams</span>
+        </a>
+        <a href="railway.html" class="card govt-card">
+            <span class="card-icon">🚂</span>
+            <span>Railways</span>
+        </a>
+        <a href="upsc.html" class="card govt-card">
+            <span class="card-icon">🏛️</span>
+            <span>UPSC / IAS</span>
+        </a>
+        <a href="defence.html" class="card govt-card">
+            <span class="card-icon">🪖</span>
+            <span>Defence Jobs</span>
+        </a>
+    </div>
+    
+    
+        </a>
+
+        <!-- Vedas Section -->
+    <div class="section-title">Vedas</div>
+    <div class="grid-container">
+        <a href="rigveda.html" class="card util-card" style="text-decoration: none;">
+            <span class="card-icon">📔</span>
+            <span>Rigveda</span>
+        </a>
+        <a href="samveda.html" class="card util-card" style="text-decoration: none;">
+            <span class="card-icon">📕</span>
+            <span>Samveda</span>
+        </a>
+        <a href="yajurveda.html" class="card util-card" style="text-decoration: none;">
+            <span class="card-icon">📜</span>
+            <span>Yajurveda</span>
+        </a>
+        <a href="atharveda.html" class="card util-card" style="text-decoration: none;">
+            <span class="card-icon">📒</span>
+            <span>Atharveda</span>
+        </a>
+    </div>
+
+    <!-- Quick Study Links Section -->
+    <div class="section-title">Quick Study Links</div>
+    <div class="grid-container">
+        <a href="syllabus.html" class="card util-card" style="text-decoration: none;">
+            <span class="card-icon">📋</span>
+            <span>Latest Syllabus</span>
+        </a>
+        <a href="pyq.html" class="card util-card" style="text-decoration: none;">
+            <span class="card-icon">📝</span>
+            <span>Old Papers</span>
+        </a>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Home</span>
+        </a>
+        <a href="chat.html" class="nav-item">
+            <span class="nav-icon">💬</span>
+            <span class="nav-text">chat</span>
+        </a>
+        <a href="quiz.html" class="nav-item">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Quiz</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">Profile</span>
+        </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bihar Board - Medha App</title>
+    <style>
+        body { padding-bottom: 30px; margin: 0; font-family: Arial, sans-serif; background-color: #f4f7f6; text-align: center; }
+        .top-bar { background-color: #fcf656; color: white; padding: 15px 20px; font-size: 20px; font-weight: bold; display: flex; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .back-btn { color: white; text-decoration: none; font-size: 24px; margin-right: 15px; cursor: pointer; }
+        .title-text { flex-grow: 1; text-align: left; }
+        .sub-title { text-align: left; margin: 20px 0 10px 5%; font-size: 16px; color: #555; font-weight: bold; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 90%; margin: 0 auto; }
+        .class-card { background-color: white; padding: 22px 10px; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; font-weight: bold; font-size: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 5px solid #fcf656; border-top: 1px solid #eef2f1; border-right: 1px solid #eef2f1; border-bottom: 1px solid #eef2f1; }
+        .class-card:active { transform: scale(0.95); }
+        .class-icon { font-size: 26px; margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="other_boards.html" class="back-btn">⬅️</a>
+        <div class="title-text">Bihar Board (BSEB)</div>
+    </div>
+    <div class="sub-title"> Select Class:</div>
+    <div class="grid-container">
+        <a href="bihar_class12.html" class="class-card"><span class="class-icon">🎓</span><span>Class 12th</span></a>
+        <a href="bihar_class11.html" class="class-card"><span class="class-icon">📚</span><span>Class 11th</span></a>
+        <a href="bihar_class10.html" class="class-card"><span class="class-icon">📝</span><span>Class 10th</span></a>
+        <a href="bihar_class9.html" class="class-card"><span class="class-icon">📖</span><span>Class 9th</span></a>
+        <a href="bihar_class8.html" class="class-card"><span class="class-icon">✏️</span><span>Class 8th</span></a>
+        <a href="bihar_class7.html" class="class-card"><span class="class-icon">🎒</span><span>Class 7th</span></a>
+        <a href="bihar_class6.html" class="class-card"><span class="class-icon">🎨</span><span>Class 6th</span></a>
+        <a href="bihar_class5.html" class="class-card"><span class="class-icon">🧸</span><span>Class 1 - 5th</span></a>
+    </div>
+</body>
+</html>

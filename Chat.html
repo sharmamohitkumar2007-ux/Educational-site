@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Doubt Chat - Medha App</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #efeae2; display: flex; flex-direction: column; height: 100vh; padding-bottom: 70px; box-sizing: border-box; }
+        .chat-header { background-color: #007BFF; color: white; padding: 15px 20px; font-size: 18px; font-weight: bold; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: fixed; top: 0; width: 100%; z-index: 1000; box-sizing: border-box; }
+        .back-btn { color: white; text-decoration: none; font-size: 22px; margin-right: 15px; }
+        .chat-box { flex: 1; padding: 15px; margin-top: 60px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .message { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 15px; line-height: 1.4; word-wrap: break-word; }
+        .incoming { background-color: white; align-self: flex-start; border-top-left-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .outgoing { background-color: #d9fdd3; align-self: flex-end; border-top-right-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .time { font-size: 10px; color: #888; text-align: right; margin-top: 4px; }
+        .input-area { position: fixed; bottom: 60px; left: 0; width: 100%; background-color: #f0f0f0; padding: 10px; display: flex; align-items: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.05); box-sizing: border-box; z-index: 1000; }
+        .input-area input { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 25px; font-size: 15px; outline: none; }
+        .send-btn { background-color: #007BFF; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; margin-left: 8px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background-color: #ffffff; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #e0e0e0; z-index: 1001; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #757575; font-size: 12px; width: 25%; }
+        .nav-icon { font-size: 20px; margin-bottom: 2px; }
+        .nav-item.active { color: #007BFF; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Chat Top Bar -->
+    <div class="chat-header">
+        <a href="index.html" class="back-btn">⬅️</a>
+        <span>💬 Live Doubt Solver Group</span>
+    </div>
+
+    <!-- Chat Messages Box -->
+    <div class="chat-box" id="chatBox"></div>
+
+    <!-- Bottom Input Bar -->
+    <div class="input-area">
+        <input type="text" id="messageInput" placeholder="Type your doubt here..." onkeypress="handleKeyPress(event)">
+        <button class="send-btn" onclick="sendMessage()">➔</button>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
+        <a href="chat.html" class="nav-item active"><span class="nav-icon">💬</span><span class="nav-text">Chat</span></a>
+        <a href="quiz.html" class="nav-item"><span class="nav-icon">📝</span><span class="nav-text">Quiz</span></a>
+        <a href="profile.html" class="nav-item"><span class="nav-icon">👤</span><span class="nav-text">Profile</span></a>
+    </div>
+
+    <!-- Firebase SDK Scripts (Yahan se Firebase connect hota hai) -->
+    <script src="https://gstatic.com"></script>
+    <script src="https://gstatic.com"></script>
+
+    <script>
+        // 🔴 APNE FIREBASE CONSOLE SE MILA HUA CONFIG DATA YAHAN REPLCE KAREIN
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Firebase Initialize karein
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Abhi ke liye ek temporary unique user id maan lete hain (baad me login se jodege)
+        const myUserId = "student_user_1"; 
+
+        // 1. Live Messages Load Karna (Database se real-time messages khichna)
+        db.collection("chats").orderBy("timestamp", "asc").onSnapshot((snapshot) => {
+            const chatBox = document.getElementById("chatBox");
+            chatBox.innerHTML = ""; // Purani screen saaf karein
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                const messageDiv = document.createElement("div");
+                
+                // Agar message mera hai toh right side (outgoing), nahi toh left side (incoming)
+                if (data.senderId === myUserId) {
+                    messageDiv.className = "message outgoing";
+                } else {
+                    messageDiv.className = "message incoming";
+                }
+
+                // Time format set karna
+                const timeString = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "Just Now";
+
+                messageDiv.innerHTML = data.text + '<div class="time">' + timeString + '</div>';
+                chatBox.appendChild(messageDiv);
+            });
+            // Auto scroll down
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+
+        // 2. Message Database Mein Bhejna
+        function sendMessage() {
+            var input = document.getElementById("messageInput");
+            var messageText = input.value.trim();
+            
+            if (messageText !== "") {
+                // Firebase Firestore ke "chats" naam ke dable/collection me data save karna
+                db.collection("chats").add({
+                    text: messageText,
+                    senderId: myUserId, // Bhejne wale ki id
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp() // Server ka live time
+                });
+                input.value = ""; // Input khali karein
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") { sendMessage(); }
+        }
+    </script>
+</body>
+</html>
