@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Education - Medha App</title>
+    <style>
+        body { 
+            padding-bottom: 80px; 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f7f6; 
+            text-align: center; 
+        }
+
+        /* Purple Theme Header for College Section */
+        .top-bar { 
+            background-color: #9C27B0; 
+            color: white; 
+            padding: 15px 20px; 
+            font-size: 20px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        }
+
+        .back-btn { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 24px; 
+            margin-right: 15px; 
+            cursor: pointer; 
+        }
+
+        .title-text { 
+            flex-grow: 1; 
+            text-align: left; 
+        }
+
+        .sub-title { 
+            text-align: left; 
+            margin: 20px 0 10px 5%; 
+            font-size: 16px; 
+            color: #555; 
+            font-weight: bold; 
+        }
+
+        /* Vertical ListView Layout for College Streams */
+        .listview-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            width: 90%; 
+            margin: 0 auto; 
+        }
+
+        /* ListView Item Style */
+        .list-item { 
+            background-color: white; 
+            padding: 18px 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05); 
+            text-decoration: none; 
+            color: #333; 
+            font-weight: bold; 
+            font-size: 16px; 
+            display: flex; 
+            align-items: center; 
+            border-left: 6px solid #9C27B0; /* Purple Border */
+            border-top: 1px solid #eef2f1;
+            border-right: 1px solid #eef2f1;
+            border-bottom: 1px solid #eef2f1;
+            transition: 0.2s;
+        }
+
+        .list-item:active { 
+            transform: scale(0.98); 
+        }
+
+        .item-icon { 
+            font-size: 24px; 
+            margin-right: 15px; 
+            background-color: #f3e5f5; /* Light Purple Background */
+            padding: 8px;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow-right { 
+            margin-left: auto; 
+            color: #9C27B0; 
+            font-size: 18px; 
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 60px; 
+            background-color: #ffffff; 
+            display: flex; 
+            justify-content: space-around; 
+            align-items: center; 
+            border-top: 1px solid #e0e0e0; 
+            z-index: 1000; 
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #757575; font-size: 12px; width: 25%; }
+        .nav-icon { font-size: 20px; margin-bottom: 2px; }
+        .nav-item.active { color: #007BFF; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar with Back Button -->
+    <div class="top-bar">
+        <a href="index.html" class="back-btn">⬅️</a>
+        <div class="title-text">College Education (UG Courses)</div>
+    </div>
+
+    <div class="sub-title">select course:</div>
+
+    <!-- College ListView -->
+    <div class="listview-container">
+        
+        <!-- 1. B.A -->
+        <a href="college_ba.html" class="list-item">
+            <span class="item-icon">🎭</span>
+            <span>B.A. (Bachelor of Arts)</span>
+            <span class="arrow-right">➔</span>
+        </a>
+
+        <!-- 2. B.Sc -->
+        <a href="college_bsc.html" class="list-item">
+            <span class="item-icon">🔬</span>
+            <span>B.Sc. (Bachelor of Science)</span>
+            <span class="arrow-right">➔</span>
+        </a>
+
+        <!-- 3. B.Com -->
+        <a href="college_bcom.html" class="list-item">
+            <span class="item-icon">📊</span>
+            <span>B.Com. (Bachelor of Commerce)</span>
+            <span class="arrow-right">➔</span>
+        </a>
+
+        <!-- 4. General English & Hindi -->
+        <a href="college_languages.html" class="list-item">
+            <span class="item-icon">📚</span>
+            <span>Foundation Course (Languages)</span>
+            <span class="arrow-right">➔</span>
+        </a>
+
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item active"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
+        <a href="chat.html" class="nav-item"><span class="nav-icon">💬</span><span class="nav-text">Chat</span></a>
+        <a href="quiz.html" class="nav-item"><span class="nav-icon">📝</span><span class="nav-text">Quiz</span></a>
+        <a href="profile.html" class="nav-item"><span class="nav-icon">👤</span><span class="nav-text">Profile</span></a>
+    </div>
+
+</body>
+</html>
